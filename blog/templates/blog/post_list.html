@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-8 mx-auto">
+            <div class="card my-4">
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}" class="text-dark">{{ post.title }}</a></h2>
+                    <p class="card-text">{{ post.text|linebreaksbr }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">Published on: {{ post.published_date }}</small>
+                        <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-sm btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
